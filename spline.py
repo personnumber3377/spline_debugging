@@ -45,11 +45,13 @@ def get_spline_natural_fifth_degree(x_vals, y_vals):
 	for j in range(n - 1, -1, -1):
 		c[j] = z[j] - mu[j]*c[j+1]
 	for j in range(n - 1, -1, -1):
-		b[j] = (a[j+1]-a[j])/h[j] + (h[j]*(2*c[j+1]+c[j]))/3.0
+		# b[j] = (a[j+1]-a[j])/h[j] + (h[j]*(2*c[j+1]+c[j]))/3.0
+		b[j] = (a[j+1]-a[j])/h[j] - (h[j]*(2*c[j]+c[j+1]))/3.0
+
 	for j in range(n - 1, -1, -1):
 		d[j] = (c[j+1]-c[j])/(3.0*h[j])
-	a.pop(0)
-	c.pop(0)
+	# a.pop(0)
+	# c.pop(0)
 	splines = [[] for _ in range(4)]
 	for i in range(n):
 		splines[0].append(a[i])
